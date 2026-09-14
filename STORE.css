@@ -1,0 +1,29 @@
+:root { --bg-color: #05060a; --accent-neon: #00f2ff; --card-bg: #0f1118; --text-main: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { background-color: var(--bg-color); color: var(--text-main); padding-top: 100px; padding-bottom: 40px; min-height: 100vh; }
+
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; z-index: 1000; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .logo { color: white; font-size: 24px; font-weight: 700; text-decoration: none; letter-spacing: 1px; }
+        .nav-links { list-style: none; display: flex; }
+        .nav-links li { position: relative; margin-left: 20px; }
+        .nav-links li a { color: white; text-decoration: none; font-weight: 500; padding: 8px 12px; display: block; border-radius: 5px; transition: 0.3s; }
+        .nav-links li a:hover { background-color: rgba(255, 255, 255, 0.1); color: var(--accent-neon); }
+        .dropdown-content { position: absolute; top: 100%; right: 0; min-width: 180px; background: rgba(20, 20, 30, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 10px 0; opacity: 0; visibility: hidden; transition: 0.3s; }
+        .dropdown:hover .dropdown-content { opacity: 1; visibility: visible; }
+        .dropdown-content a { padding: 10px 15px !important; font-size: 0.9rem; }
+        .dropdown-content a:hover { background: rgba(0, 242, 255, 0.1) !important; color: var(--accent-neon) !important; }
+
+        .container { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+        h1 { text-align: center; margin-bottom: 20px; text-transform: uppercase; text-shadow: 0 0 10px var(--accent-neon); }
+        .categories { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
+        .cat-btn { padding: 8px 16px; border-radius: 20px; border: 1px solid var(--accent-neon); background: transparent; color: var(--accent-neon); cursor: pointer; transition: 0.3s; font-size: 0.8rem; }
+        .cat-btn.active { background: var(--accent-neon); color: black; }
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; }
+        .product-card { background: var(--card-bg); border: 1px solid #1e293b; border-radius: 12px; padding: 12px; transition: 0.3s; animation: fadeIn 0.5s ease; display: flex; flex-direction: column; }
+        .product-card:hover { border-color: var(--accent-neon); box-shadow: 0 0 15px var(--accent-neon); transform: scale(1.02); }
+        .btn-detail { width: 100%; padding: 8px; background: transparent; border: 1px solid var(--accent-neon); border-radius: 6px; cursor: pointer; color: var(--accent-neon); margin-top: auto; text-decoration: none; text-align: center; display: block; }
+        .btn-detail:hover { background: var(--accent-neon); color: black; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        
