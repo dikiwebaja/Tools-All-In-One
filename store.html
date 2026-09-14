@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zelta Store | Digital Assets</title>
+    <link rel="stylesheet" href="STORE.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body> 
+    <div class="video-overlay"></div>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Dikz.Web</a>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house-user"></i> Home</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn"><i class="fa-solid fa-share-nodes"></i> Social Media <i class="fa-solid fa-arrow-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="https://www.instagram.com/dik.whydn?igsh=MTRkbHQxcnlxb20zOQ==" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram ⤶</a>
+                    <a href="https://www.tiktok.com/@fdikiwahyudin?_t=ZS-90j4WsXjA87&_r=1" target="_blank"><i class="fa-brands fa-tiktok"></i> Tiktok ⤶</a>
+                    <a href="https://www.facebook.com/share/1D2dwnJ7a6/" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook ⤶</a>
+                    <a href="https://t.me/ZeltaSparkle" target="_blank"><i class="fa-brands fa-telegram"></i> Telegram ⤶</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn"><i class="fa-solid fa-medal"></i> About Me <i class="fa-solid fa-arrow-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="CONTACT.html"><i class="fa-solid fa-envelope"></i> Contact Me!</a>
+                    <a href="index.html"><i class="fa-solid fa-user"></i> Portofolio</a>
+                    <a href="RATING.html"><i class="fa-solid fa-star-half-stroke"></i> Rating</a>
+                    <a href="DONATE.html"><i class="fa-solid fa-hand-holding-medical"></i> Support Me </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Zelta Store</h1>
+        <h1 style="color: red;">Comingsoon</h1>
+        <div class="categories">
+            <button class="cat-btn active" onclick="filterProducts('Semua', this)">Semua</button>
+            <button class="cat-btn" onclick="filterProducts('Edit', this)">Edit/Desain</button>
+            <button class="cat-btn" onclick="filterProducts('Template', this)">Template</button>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+    </div>
+    <script>
+        const allProducts = [
+            { name: "................", price: 25000, cat: "Edit" }, { name: "........", price: 35000, cat: "Template" },
+            { name: "Canva Pro", price: 50000, cat: "Edit" }, { name: "Overlay Pack", price: 20000, cat: "Edit" },
+            { name: "Lightroom", price: 30000, cat: "Edit" }, { name: "UI Kit", price: 75000, cat: "Template" },
+            { name: "Icon Set", price: 25000, cat: "Edit" }, { name: "Font Bundle", price: 40000, cat: "Edit" },
+            { name: "Music Bg", price: 15000, cat: "Template" }, { name: "Sound FX", price: 20000, cat: "Template" },
+            { name: "Web Template", price: 99000, cat: "Template" }, { name: "Social Media", price: 45000, cat: "Template" },
+            { name: "Business Card", price: 30000, cat: "Template" }, { name: "Logo Concept", price: 80000, cat: "Edit" },
+            { name: "Vector", price: 35000, cat: "Edit" }, { name: "Pattern", price: 25000, cat: "Edit" },
+            { name: "Brush", price: 20000, cat: "Edit" }, { name: "3D Model", price: 150000, cat: "Template" },
+            { name: "E-book", price: 50000, cat: "Template" }, { name: "Mockup", price: 35000, cat: "Template" }
+        ];
+
+        function filterProducts(cat, btn) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+            const filtered = (cat === 'Semua') ? allProducts : allProducts.filter(p => p.cat === cat);
+            filtered.forEach(item => {
+                grid.innerHTML += `
+                    <div class="product-card">
+                        <div style="background:#1e293b; height:100px; border-radius:8px; margin-bottom:10px;"></div>
+                        <p>${item.name}</p>
+                        <div style="color:var(--accent-neon); margin: 5px 0; font-size: 0.9rem;">Rp ${item.price.toLocaleString()}</div>
+                        <a href="product.html?name=${encodeURIComponent(item.name)}&price=${item.price}" class="btn-detail">Lihat Detail</a>
+                    </div>
+                `;
+            });
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+        filterProducts('Semua', document.querySelector('.cat-btn'));
+    </script>
+</body>
+</html>
