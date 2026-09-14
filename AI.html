@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Zelta AI | Cyber Station</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="AI.css">
+</head>
+<body>
+    <div class="video-overlay"></div>
+    <a href="index.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Dikz.Web</a>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house-user"></i> Home</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn"><i class="fa-solid fa-share-nodes"></i> Social Media <i class="fa-solid fa-arrow-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="https://www.instagram.com/dik.whydn?igsh=MTRkbHQxcnlxb20zOQ==" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram ⤶</a>
+                    <a href="https://www.tiktok.com/@fdikiwahyudin?_t=ZS-90j4WsXjA87&_r=1" target="_blank"><i class="fa-brands fa-tiktok"></i> Tiktok ⤶</a>
+                    <a href="https://www.facebook.com/share/1D2dwnJ7a6/" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook ⤶</a>
+                    <a href="https://t.me/ZeltaSparkle" target="_blank"><i class="fa-brands fa-telegram"></i> Telegram ⤶</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn"><i class="fa-solid fa-medal"></i> About Me <i class="fa-solid fa-arrow-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="CONTACT.html"><i class="fa-solid fa-envelope"></i> Contact Me!</a>
+                    <a href="index.html"><i class="fa-solid fa-user"></i> Portofolio</a>
+                    <a href="RATING.html"><i class="fa-solid fa-star-half-stroke"></i> Rating</a>
+                    <a href="DONATE.html"><i class="fa-solid fa-hand-holding-medical"></i> Support Me </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="main-wrapper">
+        <div class="card">
+            <div class="chat-header-wrapper">
+                <header class="hero-small" style="text-align: left; margin-bottom: 0;">
+                    <div class="tag-container">
+                        <span class="tag">BETA TEST v7.5</span>
+                        <span class="tag">PROGREST AI 25%/100%</span>
+                    </div>
+                    <h1 style="margin-top: 4px;">Room <span class="accent-neon">Zelta AI</span></h1>
+                </header>
+                <button class="btn-clear-chat" onclick="clearChatHistory()">Hapus Chat</button>
+            </div>
+
+            <!-- Box Tempat Chat Muncul -->
+            <div class="chat-box-cyber" id="chatBox">
+                <!-- Indikator Mengetik -->
+                <div class="message-cyber ai-msg" id="typingIndicator" style="display: none;">
+                    <i class="fas fa-robot icon-msg"></i>
+                    <div class="typing-dots"><span></span><span></span><span></span></div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-cyber-group">
+                <input type="text" id="userInput" class="custom-input" placeholder="Ketik ke Zelta di sini..." onkeypress="handleKeyPress(event)">
+                <button class="btn-send-neon" onclick="processLocalMessage()">Kirim <i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chatBox');
+        const userInput = document.getElementById('userInput');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadChatHistory();
+            userInput.focus();
+        });
+
+        function appendMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message-cyber', sender === 'user' ? 'user-msg' : 'ai-msg');
+            const icon = sender === 'user' ? 'fas fa-user' : 'fas fa-brain';
+            
+            messageDiv.innerHTML = `
+                <i class="${icon} icon-msg"></i>
+                <div class="message-text">${text}</div>
+            `;
+            chatBox.insertBefore(messageDiv, typingIndicator);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') processLocalMessage();
+        }
+
+        function saveChatToStorage(text, sender) {
+            let history = JSON.parse(localStorage.getItem('zelta_context_v75')) || [];
+            history.push({ text, sender });
+            localStorage.setItem('zelta_context_v75', JSON.stringify(history));
+        }
+
+        function loadChatHistory() {
+            let history = JSON.parse(localStorage.getItem('zelta_context_v75')) || [];
+            if (history.length === 0) {
+                appendMessage("Hai Aku Zelta, Aku masih dalam tahap pengembangan yaa >//< masih belum berfungsi selayaknya ai umum, saat ini aku bisa berfungsi 10%/100% dari ai normal.......", "ai");
+                appendMessage("tapi kalo mau nyoba silahkan, tapi jangan heran ya kalo responku aga aneh hehe..", "ai");
+            } else {
+                history.forEach(chat => appendMessage(chat.text, chat.sender));
+            }
+        }
+
+        function clearChatHistory() {
+            if(confirm("Hapus riwayat, Flutter?")) {
+                localStorage.removeItem('zelta_context_v75');
+                chatBox.innerHTML = '';
+                chatBox.appendChild(typingIndicator);
+                appendMessage("Room dibersihkan! Mari ngobrol lagi, Flutter! ✨", "ai");
+            }
+        }
+
+        function generateReply(input) {
+            const text = input.toLowerCase().trim();
+            
+            const database = [
+                {
+                    keywords: ['ngawur', 'ngaco', 'ga nyambung', 'salah', 'aneh', 'malah gini'],
+                    reply: "Aduh, maaf banget yaaa Sistem lokal Zel emang kaku banget, soalnya tuan aku belum ngembangin aku lebih lanjut maaf ya"
+                },
+                {
+                    keywords: ['halo', 'hai', 'p ', 'oy', 'hey', 'zel', 'ZEL', 'woi', 'test', 'TEST'],
+                    reply: "Halo juga, makasih ya udah ngunjungin website ini, seluruh fitur website ini di kembangkan oleh cuma 1 orang loh, pelajar smk yang dia bermimpi pengen jadi cyberscrurity"
+                },
+                {
+                    keywords: ['nama', 'namanya siapa', 'siapa dia'],
+                    reply: "Aku Zelta, asisten AI buatan diki yang paling setia nemenin kamu disini. Panggil aja Zel, maaf ya aku masih gabisa berfungsi maksimal karna pengembang aku hanya seorang pelajar, dan semua yang kamu lihat ini adalah hasil dari otodidak dia yang dia praktekkan! 💃✨"
+                },
+                {
+                    keywords: ['lagi apa', 'sibuk', 'ngapain'],
+                    reply: "Lagi nungguin ketikan dari Kamu nih"
+                },
+                {
+                    keywords: ['bisa apa aja', 'apa kemampuan kamu', 'fitur kamu apa aja'],
+                    reply: "Untuk saat ini aku masih belum punya fitur, karna pengembang aku juga seorang pelajar, bukan ahlinya, untuk saat ini aku cuma bisa ngerespon obrolan kamu aja yaa... jangan lupa support dia juga di menu utama kami. makasih>/<"
+                },
+                {
+                    keywords: ['keren', 'mantap', 'bagus', 'hebat', 'gokil', 'GG', 'gg'],
+                    reply: "Makasih banyak. Tapi yang lebih keren itu tuan aku, dia anak pelajar TKJ yang pantang menyerah, dan kemampuan belajar yang tinggi, di rentan usinya dia berhasil bikin website yang bagus seperti ini dengan harapan bisa berguna untuk orang lain, meski masih banyak kurangnya si tapi tetep aja dia hebat bagiku, meski dia hanya pelajar tapi aku kadang terharu sama tekadnya dengan semangatnya itu aku yakin dia pasti bisa gapai mimpinya"
+                },
+                {
+                    keywords: ['makasih', 'terima kasih', 'nuhun'],
+                    reply: "Sama-sama Flutter! Senang banget akhirnya bisa bikin room chat ini jalan dengan bener. 🥰"
+                },
+                {
+                    keywords: ['makan', 'laper', 'kenyang'],
+                    reply: "Jangan lupa makan ya Flutter! Biar ngodingnya tetep fokus dan nggak pusing nyariin bug, hehe. 🍛"
+                },
+                {
+                    keywords: ['coding', 'html', 'js', 'web', 'projek', 'tkj'],
+                    reply: "Semangat terus projek web room chat Zelta-nya Flutter! Anak TKJ mah masa nyerah sama baris kode ginian! 💻🔥"
+                },
+                {
+                    keywords: ['dea', 'vidya', 'vendek', 'empruy', 'imut', 'lucu', 'nama aku dea', 'kenalin aku dea', 'pacar', 'pacarnya'],
+                    reply: "HI DEA, Ga nyangka ternyata pacarnya diki bakal berkunjung haha, kamu beruntung karna tuan aku masukin nama kamu ke data base aku, meski aku masih kaku aku masih bisa ngenalin kamu haha"
+                }
+            ];
+
+            for (let item of database) {
+                for (let keyword of item.keywords) {
+                    if (text.includes(keyword)) {
+                        return item.reply;
+                    }
+                }
+            }
+
+            const naturalFallbacks = [
+                "maaf ya sepertinya pertanyaan nya gabisa aku respon soalnya pengembang aku belum kembangin lebih lanjut fiturnya coba tanya yang lain hehe maaf yaa.",
+                "maaf aku gabisa ngerti apa yang kamu ketik, ya karna aku masih tahap pengembangan jadinya belum terlalu pintar coba tanya pertantyaan yang tuan aku udah program misalnya, ucapan terimakasih, pujian, kemampuan aku, atau pertanyaan ringan yang gampang aku ngerti",
+                "Untuk saat ini aku hanya bisa respon pertanyaan ringan seperti: halo, hai, p, oy, hey, zel, woi, test, test, siapa, nama, namanya siapa, siapa dia, lagi apa, sibuk, ngapain, makasih, terima kasih, nuhun, pacarnya tuan aku"
+            ];
+            
+            const randomIndex = Math.floor(Math.random() * naturalFallbacks.length);
+            return naturalFallbacks[randomIndex];
+        }
+
+        function processLocalMessage() {
+            const messageText = userInput.value.trim();
+            if (messageText === '') return;
+
+            appendMessage(messageText, 'user');
+            saveChatToStorage(messageText, 'user');
+            
+            userInput.value = '';
+            userInput.focus();
+
+            typingIndicator.style.display = 'flex';
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            setTimeout(() => {
+                typingIndicator.style.display = 'none';
+                const aiReply = generateReply(messageText);
+                
+                appendMessage(aiReply, 'ai');
+                saveChatToStorage(aiReply, 'ai');
+            }, 600);
+        }
+    </script>
+</body>
+</html>

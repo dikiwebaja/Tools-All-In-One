@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kritik, Saran & Rating - Web Aneh v2.2</title>
+    <link rel="stylesheet" href="RATING.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </head>
+<body>
+    <div class="video-overlay"></div>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Dikz.Web</a>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house-user"></i> Home</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn"><i class="fa-solid fa-share-nodes"></i> Social Media <i class="fa-solid fa-arrow-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="https://www.instagram.com/dik.whydn?igsh=MTRkbHQxcnlxb20zOQ==" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram ⤶</a>
+                    <a href="https://www.tiktok.com/@fdikiwahyudin?_t=ZS-90j4WsXjA87&_r=1" target="_blank"><i class="fa-brands fa-tiktok"></i> Tiktok ⤶</a>
+                    <a href="https://www.facebook.com/share/1D2dwnJ7a6/" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook ⤶</a>
+                    <a href="https://t.me/ZeltaSparkle" target="_blank"><i class="fa-brands fa-telegram"></i> Telegram ⤶</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn"><i class="fa-solid fa-medal"></i> About Me <i class="fa-solid fa-arrow-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="CONTACT.html"><i class="fa-solid fa-envelope"></i> Contact Me!</a>
+                    <a href="index.html"><i class="fa-solid fa-user"></i> Portofolio</a>
+                    <a href="RATING.html"><i class="fa-solid fa-star-half-stroke"></i> Rating</a>
+                    <a href="DONATE.html"><i class="fa-solid fa-hand-holding-medical"></i> Support Me </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <main class="section-container">
+        <div class="card">
+            
+            <div class="header-wrapper">
+                <span class="tag">Poin Progres 8 🔥</span>
+                <h1>Kritik, Saran & <span class="accent-neon">Rating</span></h1>
+            </div>
+            <form action="https://api.web3forms.com/submit" method="POST" id="feedbackForm">
+                <input type="hidden" name="access_key" value="3f422e90-6e23-4f5a-843c-b20ae85ed991">
+                <input type="hidden" name="subject" value="🔥 Notifikasi Kritik & Rating Baru Web Aneh!">
+                <input type="hidden" name="from_name" value="Web Aneh Engine">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label class="form-label"><i class="fas fa-user accent-neon"></i> Nama / Anonim :</label>
+                    <input type="text" name="Nama_Pengunjung" class="custom-input" placeholder="Masukkan nama kamu..." required>
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label class="form-label"><i class="fas fa-star accent-neon"></i> Berikan Rating Kamu :</label>
+                    <div class="stars-container" id="starsContainer">
+                        <i class="fas fa-star" data-value="1" onclick="selectStar(1)"></i>
+                        <i class="fas fa-star" data-value="2" onclick="selectStar(2)"></i>
+                        <i class="fas fa-star" data-value="3" onclick="selectStar(3)"></i>
+                        <i class="fas fa-star" data-value="4" onclick="selectStar(4)"></i>
+                        <i class="fas fa-star" data-value="5" onclick="selectStar(5)"></i>
+                    </div>
+                    <input type="hidden" name="Rating_Bintang" id="ratingValue" value="0">
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label class="form-label"><i class="fas fa-comment-dots accent-neon"></i> Kritik & Saran Pesan :</label>
+                    <textarea name="Kritik_dan_Saran" class="custom-input" placeholder="Tulis masukan, kritik gila, atau saran membangun kamu di sini..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit-neon">
+                    Kirim Kritik & Rating <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+            <div class="back-link">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> MENU</a>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        let currentSelectedRating = 0;
+        const ratingValueInput = document.getElementById('ratingValue');
+
+        function selectStar(value) {
+            currentSelectedRating = value;
+            ratingValueInput.value = value + " Bintang"; 
+            
+            const stars = document.querySelectorAll('#starsContainer i');
+            stars.forEach(star => {
+                const starValue = parseInt(star.getAttribute('data-value'));
+                if (starValue <= value) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        document.getElementById('feedbackForm').onsubmit = function(e) {
+            if (currentSelectedRating === 0) {
+                alert("Flutter, pilih bintang ratingnya dulu dong sebelum di-kirim! 😉⭐");
+                return false;
+            }
+        };
+    </script>
+</body>
+</html>

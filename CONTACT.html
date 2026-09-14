@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Business - Web Aneh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="CONTACT.css">
+</head>
+<body>
+
+<div class="video-overlay"></div>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Dikz.Web</a>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house-user"></i> Home</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn"><i class="fa-solid fa-share-nodes"></i> Social Media <i class="fa-solid fa-arrow-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="https://www.instagram.com/dik.whydn?igsh=MTRkbHQxcnlxb20zOQ==" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram ⤶</a>
+                    <a href="https://www.tiktok.com/@fdikiwahyudin?_t=ZS-90j4WsXjA87&_r=1" target="_blank"><i class="fa-brands fa-tiktok"></i> Tiktok ⤶</a>
+                    <a href="https://www.facebook.com/share/1D2dwnJ7a6/" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook ⤶</a>
+                    <a href="https://t.me/ZeltaSparkle" target="_blank"><i class="fa-brands fa-telegram"></i> Telegram ⤶</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn"><i class="fa-solid fa-medal"></i> About Me <i class="fa-solid fa-arrow-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="CONTACT.html"><i class="fa-solid fa-envelope"></i> Contact Me!</a>
+                    <a href="index.html"><i class="fa-solid fa-user"></i> Portofolio</a>
+                    <a href="RATING.html"><i class="fa-solid fa-star-half-stroke"></i> Rating</a>
+                    <a href="DONATE.html"><i class="fa-solid fa-hand-holding-medical"></i> Support Me </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    
+    <main class="section-container">
+        <div class="card">
+            
+            <div class="header-wrapper">
+                <span class="tag">Inquiry System 🚀</span>
+                <h1>Let's <span class="accent-purple">Collaborate</span></h1>
+            </div>
+
+            <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+                
+                <input type="hidden" name="access_key" value="3f422e90-6e23-4f5a-843c-b20ae85ed991">
+                
+                <input type="hidden" name="subject" value="💼 [PROJEK/KERJASAMA] Ada Penawaran Baru di Web Aneh!">
+                <input type="hidden" name="from_name" value="Business Router Engine">
+
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label class="form-label"><i class="fas fa-building accent-purple"></i> Nama Klien / Perusahaan / Brand :</label>
+                    <input type="text" name="Nama_Klien_atau_Brand" class="custom-input" placeholder="Contoh: Toko Digital / Anonim" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label class="form-label"><i class="fas fa-envelope accent-purple"></i> Email Kontak Mereka :</label>
+                    <input type="email" name="Email_Klien" class="custom-input" placeholder="nama@email.com" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label class="form-label"><i class="fas fa-handshake accent-purple"></i> Jenis Kerja Sama :</label>
+                    <select name="Jenis_Kerjasama" class="custom-input" required>
+                        <option value="" disabled selected>Pilih jenis projek...</option>
+                        <option value="Jasa Video Editing (CapCut/Premiere)">Jasa Video Editing</option>
+                        <option value="Jasa Desain Grafis">Jasa Desain Grafis</option>
+                        <option value="Pembuatan Website Projek">Pembuatan Website</option>
+                        <option value="Kolaborasi Medsos / Sponsor">Kolaborasi / Sponsor</option>
+                        <option value="Lainnya">Urusan Lainnya</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label class="form-label"><i class="fas fa-file-alt accent-purple"></i> Detail Penawaran & Brief Projek :</label>
+                    <textarea name="Brief_Detail_Projek" class="custom-input" placeholder="Jelaskan detail kerja sama, deadline, atau budget yang kamu tawarkan di sini..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit-neon">
+                    Kirim Ajakan Kerja Sama <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+
+            <div class="back-link" style="text-decoration: none;">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to menu</a>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

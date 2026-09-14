@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dikz PassGen | Cyber Security Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="generator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="PW.css">
+<head>
+<body>
+    <div class="video-overlay"></div>
+    <a href="index.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Dikz.Web</a>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house-user"></i> Home</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn"><i class="fa-solid fa-share-nodes"></i> Social Media <i class="fa-solid fa-arrow-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="https://www.instagram.com/dik.whydn?igsh=MTRkbHQxcnlxb20zOQ==" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram ⤶</a>
+                    <a href="https://www.tiktok.com/@fdikiwahyudin?_t=ZS-90j4WsXjA87&_r=1" target="_blank"><i class="fa-brands fa-tiktok"></i> Tiktok ⤶</a>
+                    <a href="https://www.facebook.com/share/1D2dwnJ7a6/" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook ⤶</a>
+                    <a href="https://t.me/ZeltaSparkle" target="_blank"><i class="fa-brands fa-telegram"></i> Telegram ⤶</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn"><i class="fa-solid fa-medal"></i> About Me <i class="fa-solid fa-arrow-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="CONTACT.html"><i class="fa-solid fa-envelope"></i> Contact Me!</a>
+                    <a href="index.html"><i class="fa-solid fa-user"></i> Portofolio</a>
+                    <a href="RATING.html"><i class="fa-solid fa-star-half-stroke"></i> Rating</a>
+                    <a href="DONATE.html"><i class="fa-solid fa-hand-holding-medical"></i> Support Me </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <a href="index.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+    <div class="back-container">
+        <a href="index.html" class="btn-back reveal-item">
+            <i class="fa-solid fa-arrow-left"></i> Kembali ke Home
+        </a>
+    </div>
+    <div class="video-overlay"></div>
+    <div class="section-container">
+        <div class="card reveal active">
+            <header class="hero-small reveal-item">
+                <div class="icon-big"><i class="fa-solid fa-unlock-keyhole"></i></div>
+                <h1>Dikz <span class="accent-neon">PassGen</span><span class="pro-badge">PRO</span></h1>
+                <p class="tag">Buat Password Terbaikmu</p>
+            </header>
+            <div class="pass-display-container reveal-item">
+                <input type="text" id="passwordResult" readonly placeholder="GENERATE SEKARANG">
+                <button class="copy-icon-btn" onclick="copyToClipboard()" id="copyBtn">
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+            </div>
+            <div class="strength-container reveal-item">
+                <div class="strength-bar-wrapper">
+                    <div class="strength-bar" id="strengthBar"></div>
+                </div>
+                <div id="strengthText">Kekuatan: Menunggu...</div>
+            </div>
+            <div class="generator-controls">
+                <div class="input-group reveal-item">
+                    <label class="label-text">Custom Password (Optional)</label><br>
+                    <input type="text" id="customWord" placeholder="Contoh: Nama / Tanggal Lahir" class="custom-input">
+                </div>
+                <div class="control-group reveal-item">
+                    <div class="label-row">
+                        <span class="label-text">Jumlah Huruf Password</span>
+                        <span id="lenValue" class="accent-purple">12</span>
+                    </div>
+                    <input type="range" id="length" min="8" max="32" value="12" class="slider">
+                </div>
+                <div class="options-grid reveal-item">
+                    <div class="option-wrapper"><input type="checkbox" id="uppercase" checked hidden><label for="uppercase" class="chip-button"><i class="fa-solid fa-font"></i> Hanya Huruf</label></div>
+                    <div class="option-wrapper"><input type="checkbox" id="numbers" checked hidden><label for="numbers" class="chip-button"><i class="fa-solid fa-hashtag"></i> Hanya Nomor</label></div>
+                    <div class="option-wrapper"><input type="checkbox" id="symbols" checked hidden><label for="symbols" class="chip-button"><i class="fa-solid fa-at"></i> Hanya Simbol</label></div>
+                </div>
+                <button class="btn-generate-neon reveal-item" onclick="generatePassword()">GENERATE PASSWORD ⚡</button>
+                <div class="history-section reveal-item">
+                    <div class="history-title"><i class="fa-solid fa-clock-rotate-left"></i> Riwayat Terakhir</div>
+                    <ul class="history-list" id="historyList"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const lengthEl = document.getElementById('length');
+        const lenValueEl = document.getElementById('lenValue');
+        const resultEl = document.getElementById('passwordResult');
+        const copyBtn = document.getElementById('copyBtn');
+        const customWordEl = document.getElementById('customWord');
+        const strengthBar = document.getElementById('strengthBar');
+        const strengthText = document.getElementById('strengthText');
+        const historyList = document.getElementById('historyList');
+        let passwordHistory = [];
+        lengthEl.addEventListener('input', () => { lenValueEl.innerText = lengthEl.value; });
+        function updateStrength(password) {
+            let strength = 0;
+            if (password.length > 10) strength += 25;
+            if (/[A-Z]/.test(password)) strength += 25;
+            if (/[0-9]/.test(password)) strength += 25;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 25;
+            strengthBar.className = "strength-bar";
+            if (strength <= 25) { strengthBar.style.width = "25%"; strengthBar.classList.add("weak"); strengthText.innerHTML = "Kekuatan: <span style='color: #ff4d4d'>LEMAH</span>"; }
+            else if (strength <= 50) { strengthBar.style.width = "50%"; strengthBar.classList.add("medium"); strengthText.innerHTML = "Kekuatan: <span style='color: #ffd93d'>LUMAYAN</span>"; }
+            else if (strength <= 75) { strengthBar.style.width = "75%"; strengthBar.classList.add("strong"); strengthText.innerHTML = "Kekuatan: <span style='color: #6bffbc'>KUAT</span>"; }
+            else { strengthBar.style.width = "100%"; strengthBar.classList.add("secure"); strengthText.innerHTML = "Kekuatan: <span style='color: #00f2ff'>SANGAT AMAN!</span>"; }
+        }
+        function addToHistory(password) {
+            passwordHistory.unshift(password);
+            if (passwordHistory.length > 5) passwordHistory.pop();
+            historyList.innerHTML = "";
+            passwordHistory.forEach(pass => {
+                const li = document.createElement('li');
+                li.className = "history-item";
+                li.innerHTML = `<span>${pass}</span> <i class="fa-solid fa-check-double" style="color: var(--accent-neon); font-size: 0.7rem;"></i>`;
+                historyList.appendChild(li);
+            });
+        }
+        function generatePassword() {
+            const length = parseInt(lengthEl.value);
+            const customWord = customWordEl.value.trim();
+            const hasUpper = document.getElementById('uppercase').checked;
+            const hasNumber = document.getElementById('numbers').checked;
+            const hasSymbol = document.getElementById('symbols').checked;
+            const lower = "abcdefghijklmnopqrstuvwxyz";
+            const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const numbers = "0123456789";
+            const symbols = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+            let charPool = lower;
+            if (hasUpper) charPool += upper;
+            if (hasNumber) charPool += numbers;
+            if (hasSymbol) charPool += symbols;
+            let password = customWord;
+            let remainingLength = length - customWord.length;
+            if (remainingLength < 0) remainingLength = 0;
+            for (let i = 0; i < remainingLength; i++) { password += charPool[Math.floor(Math.random() * charPool.length)]; }
+            resultEl.value = password;
+            resultEl.type = 'text';
+            updateStrength(password);
+            addToHistory(password);
+        }
+        function copyToClipboard() {
+            if (!resultEl.value) return;
+            navigator.clipboard.writeText(resultEl.value).then(() => {
+                const originalIcon = copyBtn.innerHTML;
+                copyBtn.innerHTML = "<span style='font-size: 0.6rem; font-weight: 800;'>COPIED!</span>";
+                setTimeout(() => { copyBtn.innerHTML = originalIcon; }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

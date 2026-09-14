@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dukung Kreator - Web Aneh v2.2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="DONATE.css">
+</head>
+<body>
+   <div class="video-overlay"></div>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Dikz.Web</a>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house-user"></i> Home</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn"><i class="fa-solid fa-share-nodes"></i> Social Media <i class="fa-solid fa-arrow-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="https://www.instagram.com/dik.whydn?igsh=MTRkbHQxcnlxb20zOQ==" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram ⤶</a>
+                    <a href="https://www.tiktok.com/@fdikiwahyudin?_t=ZS-90j4WsXjA87&_r=1" target="_blank"><i class="fa-brands fa-tiktok"></i> Tiktok ⤶</a>
+                    <a href="https://www.facebook.com/share/1D2dwnJ7a6/" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook ⤶</a>
+                    <a href="https://t.me/ZeltaSparkle" target="_blank"><i class="fa-brands fa-telegram"></i> Telegram ⤶</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn"><i class="fa-solid fa-medal"></i> About Me <i class="fa-solid fa-arrow-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="CONTACT.html"><i class="fa-solid fa-envelope"></i> Contact Me!</a>
+                    <a href="index.html"><i class="fa-solid fa-user"></i> Portofolio</a>
+                    <a href="RATING.html"><i class="fa-solid fa-star-half-stroke"></i> Rating</a>
+                    <a href="DONATE.html"><i class="fa-solid fa-hand-holding-medical"></i> Support Me </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    
+    <main class="section-container">
+        <div class="card">
+            
+            <div class="header-wrapper">
+                <span class="tag"><i class="fas fa-heart"></i> Support Jaringan</span>
+                <h1>Dukung <span class="accent-neon">Kreator</span></h1>
+            </div>
+            <p class="support-desc">
+                Hai! Makasih banyak ya udah mampir. Kalau kamu suka dengan fitur-fitur unik di web aneh ini, dukungan kecil dari kamu bakal berharga banget buat sewa server dan beli kopi penambah tumpukan baris kode! ☕✨
+            </p>
+            <div class="ewallet-logo-container">
+                <i class="fa-solid fa-wallet ewallet-icon" title="Dana"></i>
+                <i class="fa-solid fa-money-bill-wave ewallet-icon" title="OVO"></i>
+                <i class="fa-solid fa-coins ewallet-icon" title="Gopay"></i>
+                <i class="fa-solid fa-credit-card ewallet-icon" title="ShopeePay"></i>
+                <i class="fa-solid fa-building-columns ewallet-icon" title="LinkAja"></i>
+            </div>
+            <div class="trigger-container">
+                <div class="trigger-title"><i class="fa-solid fa-hand-holding-heart"></i> Pilih Metode Dukungan :</div>
+                <div class="trigger-grid">
+                    <div class="trigger-btn" id="btnSawerTrigger" onclick="triggerSlideMenu('sawer')">
+                        <i class="fas fa-bolt" style="color: var(--accent-purple);"></i> Instan Link
+                    </div>
+                    <div class="trigger-btn" id="btnQrisTrigger" onclick="triggerSlideMenu('qris')">
+                        <i class="fas fa-qrcode" style="color: var(--accent-neon);"></i> Scan QRIS
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-menu-wrapper" id="hiddenMenu">
+                <div class="hidden-menu-inner">
+                    
+                    <div id="contentSawer" class="slide-content">
+                        <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 5px;">Dukung lewat e-wallet instan pilihan kamu via platform Saweria.</p>
+                        <a href="https://saweria.co/dikzkulz" target="_blank" class="btn-sawer-link">
+                            Klik Untuk Sawer <i class="fas fa-coffee"></i>
+                        </a>
+                    </div>
+                    <div id="contentQris" class="slide-content">
+                        <div class="qris-container">
+                            <img src="QRIS.jpeg" alt="QRIS Donasi" class="qris-img">
+                        </div>
+                        <div class="instructions">
+                            <p><i class="fas fa-mobile-alt"></i> <span>1. Screenshot atau simpan gambar QRIS di atas.</span></p>
+                            <p><i class="fas fa-camera"></i> <span>2. Buka aplikasi e-wallet pilihan kamu.</span></p>
+                            <p><i class="fas fa-qrcode"></i> <span>3. Pilih 'Scan' lalu masukkan gambar QRIS dari galeri hp.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="medsos-container">
+                <div class="medsos-title"><i class="fa-solid fa-circle-nodes"></i> My Social Network :</div>
+                <div class="medsos-grid">
+                    <a href="https://www.instagram.com/dik.whydn?igsh=MTRkbHQxcnlxb20zOQ==" target="_blank" class="medsos-item"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@fdikiwahyudin?_t=ZS-90j4WsXjA87&_r=1" target="_blank" class="medsos-item"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://www.facebook.com/share/1D2dwnJ7a6/" target="_blank" class="medsos-item"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://t.me/ZeltaSparkle" target="_blank" class="medsos-item"><i class="fa-brands fa-telegram"></i></a>
+                </div>
+                <div class="back-link">
+                    <a href="index.html"><i class="fas fa-arrow-left"></i> Back Main Menu</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <script>
+        let currentActiveMenu = null;
+
+        function triggerSlideMenu(type) {
+            const menuWrapper = document.getElementById('hiddenMenu');
+            const sawerContent = document.getElementById('contentSawer');
+            const qrisContent = document.getElementById('contentQris');
+            
+            const btnSawer = document.getElementById('btnSawerTrigger');
+            const btnQris = document.getElementById('btnQrisTrigger');
+
+            // JIKA USER MENGKLIK TOMBOL YANG SAMA (Tutup Menu / Slide Up)
+            if (currentActiveMenu === type) {
+                menuWrapper.classList.remove('slide-down');
+                btnSawer.classList.remove('active-sawer');
+                btnQris.classList.remove('active-qris');
+                
+                // Content baru di-hide setelah animasi slide up selesai biar ga jepret
+                setTimeout(() => {
+                    sawerContent.classList.remove('active');
+                    qrisContent.classList.remove('active');
+                }, 500); 
+                
+                currentActiveMenu = null;
+                return;
+            }
+
+            if (currentActiveMenu !== null) {
+                sawerContent.classList.remove('active');
+                qrisContent.classList.remove('active');
+                btnSawer.classList.remove('active-sawer');
+                btnQris.classList.remove('active-qris');
+            }
+
+            if (type === 'sawer') {
+                btnSawer.classList.add('active-sawer');
+                sawerContent.classList.add('active');
+            } else if (type === 'qris') {
+                btnQris.classList.add('active-qris');
+                qrisContent.classList.add('active');
+            }
+
+            menuWrapper.classList.add('slide-down');
+            currentActiveMenu = type;
+        }
+    </script>
+</body>
+</html>
